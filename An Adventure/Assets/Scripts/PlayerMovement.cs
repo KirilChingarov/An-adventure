@@ -6,12 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     public float PlayerSpeed = 0.1f;
     public Vector3 jump;
+    public Vector3 leftDash;
+    public Vector3 rightDash;
     public float jumpForce = 2.0f;
+    public float Force = 2.0f;
     public bool isGrounded;
 
     void Start()
     {   
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+        leftDash = new Vector3(-2.0f, 0.0f, 0.0f);
+        rightDash = new Vector3(2.0f, 0.0f, 0.0f);
     }
 
     void Update()
@@ -23,13 +28,22 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
+        } else if (Input.GetKeyDown(KeyCode.LeftShift) && horizontalAxis<0)
+        {
+            rb.AddForce(leftDash * Force, ForceMode.Impulse);
+        } else if (Input.GetKeyDown(KeyCode.LeftShift) && horizontalAxis > 0)
+        {
+            rb.AddForce(rightDash * Force, ForceMode.Impulse);
+        } 
 
-        
         rb.MovePosition(transform.position + displacement);
     }
-    
+
+    void OnCollisionExit()
+    {
+        isGrounded = false;
+    }
+
     void OnCollisionStay()
     {
         isGrounded = true;
