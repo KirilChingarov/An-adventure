@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -442,6 +443,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79721e0c2bc4b7040a1a236f2ff91d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFrameRate: 60
 --- !u!1 &1063841716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 8dd6b5da84959e545819cfa15f26616e,
@@ -460,15 +474,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39385c41b3e372149a5994d5a2484b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 20
+  PlayerSpeed: 5
   jump: {x: 0, y: 0, z: 0}
-  leftDash: {x: 0, y: 0, z: 0}
-  rightDash: {x: 0, y: 0, z: 0}
-  jumpForce: 5
-  Force: 3
+  leftDash: {x: 1, y: 0, z: 0}
+  rightDash: {x: -1, y: 0, z: 0}
+  jumpForce: 2.5
   isGrounded: 0
   dashCooldown: 3
-  rotated: 0
+  dashSpeed: 5
 --- !u!54 &1063841718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -483,7 +496,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 88
   m_CollisionDetection: 0
 --- !u!1 &1089832493
 GameObject:
@@ -699,7 +712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287916422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22065032, y: -2.6472921, z: 0.4348057}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 17, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1310954334}

@@ -9,14 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 leftDash;
     public Vector3 rightDash;
     public float jumpForce = 2.0f;
-    public float Force = 2.0f;
-    public bool isGrounded;
+    public int isGrounded = 1;
     public int dashCooldown = 3;
-    public int rotated = 0;
+    public float dashSpeed = 2;
+    private int rotated = 0;
+    private float horizontalAxis;
+    private Rigidbody rb;
 
     void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         rb.transform.Rotate(0, -90, 0, Space.Self);
         rotated--;
         jump = new Vector3(0.0f, 2.0f, 0.0f);
@@ -26,31 +28,31 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        float horizontalAxis = Input.GetAxis("Horizontal");
+        horizontalAxis = Input.GetAxis("Horizontal");
         Vector3 displacement = new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * PlayerSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump(rb);
-        }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Dash(horizontalAxis, rb);
+            Dash();
+        }
+        if (isGrounded > -1 && Input.GetKeyDown(KeyCode.Space))
+        {
+            isGrounded--;
+            Jump();
         }
 
-        Rotate(rb);
         rb.MovePosition(transform.position + displacement);
+        Rotate();
     }
 
     void OnCollisionExit()
     {
-        isGrounded = false;
+        isGrounded = 0;
     }
 
     void OnCollisionStay()
     {
-        isGrounded = true;
+        isGrounded = 1;
     }
 
     void DecreaseCooldown()
@@ -61,39 +63,57 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Dash(float horizontalAxis, Rigidbody rb)
+    void Dash()
     {
+        //rb.velocity = transform.forward * dashSpeed;
         if (horizontalAxis < 0 && dashCooldown == 0)
         {
-            rb.AddForce(leftDash * Force, ForceMode.Impulse);
+            rightDash *= Time.deltaTime * dashSpeed;
+            rb.MovePosition(transform.position + rightDash);
             dashCooldown = 3;
         }
         if (horizontalAxis > 0 && dashCooldown == 0)
         {
-            rb.AddForce(leftDash * -1 * Force, ForceMode.Impulse);
+            leftDash *= Time.deltaTime * dashSpeed;
+            rb.MovePosition(transform.position + leftDash);
             dashCooldown = 3;
         }
     }
 
-    void Jump(Rigidbody rb)
-    {
-        if (isGrounded)
+    void Jump()
+    { 
+        rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+    }
+
+    void Rotate()
+    {    
+        if (Input.GetKey(KeyCode.A) && rotated < 0 && horizontalAxis < 0)
         {
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            StartCoroutine(RotateMe(Vector3.up * 180, 0.05f));
+            rotated = 1;
+        }
+        if(Input.GetKey(KeyCode.D) && rotated > 0 && horizontalAxis > 0) {
+            StartCoroutine(RotateMe(Vector3.up * -180, 0.05f));
+            rotated = -1;
         }
     }
 
-    void Rotate(Rigidbody rb)
+    private IEnumerator Delay()
     {
-        if(Input.GetKeyDown(KeyCode.A) && rotated < 0)
+        yield return new WaitForSeconds(0.25f);
+        rb.useGravity = true;
+    }
+
+    IEnumerator RotateMe(Vector3 angles, float seconds)
+    {
+        var fromAngle = transform.rotation;
+        var toAngle = Quaternion.Euler(transform.eulerAngles + angles);
+        for (var t = 0f; t < 1; t += Time.deltaTime / seconds)
         {
-            rb.transform.Rotate(0, 180, 0, Space.Self);
-            rotated += 2;
+            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
+            yield return null;
         }
-        if (Input.GetKeyDown(KeyCode.D) && rotated > 0) { 
-            rb.transform.Rotate(0, -180, 0, Space.Self);
-            rotated -= 2;
-        }
+        transform.rotation = toAngle;
     }
 }
 
