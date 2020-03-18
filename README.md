@@ -13,3 +13,8 @@ Game developed by Kiril Chingarov and Simeon Tsekov
     - 3D modelling software - Autodesk Maya;  
     - Texture editor - Photoshop / Krita;  
     - Music production software - Musescore / FL studio.  
+
+**Branching Strategy - Git Flow:**  
+    - master - main branch;  
+    - development - keeps the last stable branch;  
+    - feature branches - for developing the different features.  
