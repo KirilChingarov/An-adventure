@@ -15,14 +15,18 @@ public class FireBallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider hitInfo)
     {
-        Debug.Log(hitInfo.name);
-
-        EnemyController enemy = hitInfo.GetComponent<EnemyController>();
-        if(enemy != null)
+        if (hitInfo.tag != "Character" || hitInfo.tag == "Projectile")
         {
-            enemy.TakeDamage(fireBallDamage);
+            Debug.Log(hitInfo.name);
+
+            EnemyController enemy = hitInfo.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(fireBallDamage);
+            }
+
+            Destroy(gameObject);
         }
         
-        Destroy(gameObject);
     }
 }

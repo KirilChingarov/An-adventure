@@ -15,7 +15,6 @@ public class EnemyAttack : MonoBehaviour
         if (other.tag == "Character" && Time.time > nextAttack)
         {
             nextAttack = Time.time + attackCooldown;
-            //PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
 
             if (playerHealth != null) {
