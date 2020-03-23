@@ -20,7 +20,7 @@ public class FireBallController : MonoBehaviour
         EnemyController enemy = hitInfo.GetComponent<EnemyController>();
         if(enemy != null)
         {
-            enemy.TakeDamgae(fireBallDamage);
+            enemy.TakeDamage(fireBallDamage);
         }
         
         Destroy(gameObject);

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public int health = 100;
+    public int enemyHealth = 100;
 
-    public void TakeDamgae(int damage)
+    public void TakeDamage(int damage)
     {
-        health -= damage;
+        enemyHealth -= damage;
 
-        if (health <= 0)
+        if (enemyHealth <= 0)
         {
             Die();
         }

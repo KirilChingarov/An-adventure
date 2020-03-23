@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.transform.Rotate(0, -90, 0, Space.Self);
+        //rb.transform.Rotate(0, -90, 0, Space.Self);
         rotated--;
         InvokeRepeating("DecreaseCooldown", 1.0f, 1.0f);
         dashTime = startDashTime;
