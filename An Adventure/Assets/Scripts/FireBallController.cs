@@ -15,7 +15,7 @@ public class FireBallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.tag != "Character" || hitInfo.tag == "Projectile")
+        if (hitInfo.tag == "Enemy" || hitInfo.tag == "Obstacle")
         {
             Debug.Log(hitInfo.name);
 
