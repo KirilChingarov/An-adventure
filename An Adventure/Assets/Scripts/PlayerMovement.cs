@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeed = 2.0f;
     public float startDashTime;
     private int rotated = 0;
-    private int isGrounded = 1;
+    public int isGrounded = 1;
     private float horizontalAxis;
     private Rigidbody rb;
     private int direction;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //rb.transform.Rotate(0, -90, 0, Space.Self);
+        rb.transform.Rotate(0, -90, 0, Space.Self);
         rotated--;
         InvokeRepeating("DecreaseCooldown", 1.0f, 1.0f);
         dashTime = startDashTime;
@@ -40,8 +40,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashTime <= 0 && dashed)
         {
+            if(direction != 3) 
+            { 
+                rb.velocity = Vector3.zero;
+            } else
+            {
+                rb.velocity = Vector3.up * 1;
+            }
+
             direction = 0;
-            rb.velocity = Vector3.zero;
             dashed = false;
         }
         else
@@ -55,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
             else if (direction == 2)
             {
                 rb.velocity = Vector3.right * dashSpeed;
+            }
+            else if (direction == 3)
+            {
+                rb.velocity = Vector3.up * dashSpeed;
             }
         }
 
@@ -71,6 +82,10 @@ public class PlayerMovement : MonoBehaviour
         dashCooldown = 3;
         dashTime = startDashTime;
 
+        if (Input.GetKey(KeyCode.W))
+        {
+            direction = 3;
+        }
         if (horizontalAxis < 0)
         {
             direction = 1;
