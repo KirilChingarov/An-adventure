@@ -9938,9 +9938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   jumpForce: 5
-  dashCooldown: 3
-  dashSpeed: 15
-  startDashTime: 0.2
   isGrounded: 1
 --- !u!54 &219851147
 Rigidbody:
@@ -9971,6 +9968,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.041165885, y: 0.13000363, z: 0.031110257}
   m_Center: {x: -0.0015842598, y: -0.0028414032, z: 0.0056417934}
+--- !u!114 &219851153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219851142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46618664137ccf64d94d08ab9224120c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashCooldown: 3
+  dashSpeed: 15
+  startDashTime: 0.2
+--- !u!114 &219851154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219851142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca64c47230865040ae1e04479c31fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &238613145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24931,6 +24955,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8508328987944030264, guid: e93cab86fb84f4e42861a5d0c25cc849,
+        type: 3}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93cab86fb84f4e42861a5d0c25cc849, type: 3}
 --- !u!1001 &1291319760
@@ -29809,7 +29838,7 @@ GameObject:
   - component: {fileID: 1494533367}
   m_Layer: 8
   m_Name: Platforms
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30003,6 +30032,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 8508328987944030264, guid: e93cab86fb84f4e42861a5d0c25cc849,
+        type: 3}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93cab86fb84f4e42861a5d0c25cc849, type: 3}
 --- !u!1 &1823257835

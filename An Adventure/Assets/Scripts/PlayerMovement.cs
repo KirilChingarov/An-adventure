@@ -2,98 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Player
 {
     public float playerSpeed = 0.1f;
     public float jumpForce = 2.0f;
-    public int dashCooldown = 3;
-    public float dashSpeed = 2.0f;
-    public float startDashTime;
-    private int rotated = 0;
+    private int rotated = -1;
     public int isGrounded = 1;
-    private float horizontalAxis;
-    private Rigidbody rb;
-    private int direction;
-    private float dashTime;
-    private bool dashed;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //rb.transform.Rotate(0, -90, 0, Space.Self);
-        rotated--;
-        InvokeRepeating("DecreaseCooldown", 1.0f, 1.0f);
-        dashTime = startDashTime;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown == 0)
-        {
-            Dash();
-        }
         if (isGrounded > -1 && Input.GetKeyDown(KeyCode.Space))
         {
             isGrounded--;
             Jump();
         }
 
-        if (dashTime <= 0 && dashed)
-        {
-            if(direction != 3) 
-            { 
-                rb.velocity = Vector3.zero;
-            } else
-            {
-                rb.velocity = Vector3.up * 1;
-            }
-
-            direction = 0;
-            dashed = false;
-        }
-        else
-        {
-            dashTime -= Time.deltaTime;
-
-            if (direction == 1)
-            {
-                rb.velocity = Vector3.left * dashSpeed;
-            }
-            else if (direction == 2)
-            {
-                rb.velocity = Vector3.right * dashSpeed;
-            }
-            else if (direction == 3)
-            {
-                rb.velocity = Vector3.up * dashSpeed;
-            }
-        }
-
         horizontalAxis = Input.GetAxis("Horizontal");
         Vector3 displacement = new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * playerSpeed;
         rb.MovePosition(transform.position + displacement);
         Rotate();
-    }
-
-
-    void Dash()
-    {
-        dashed = true;
-        dashCooldown = 3;
-        dashTime = startDashTime;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            direction = 3;
-        }
-        if (horizontalAxis < 0)
-        {
-            direction = 1;
-        }
-        if (horizontalAxis > 0)
-        {
-            direction = 2;
-        }
     }
 
     void Jump()
@@ -126,21 +58,19 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = toAngle;
     }
 
-    void OnCollisionExit()
+    void OnCollisionExit(Collision collision)
     {
-        isGrounded = 0;
-    }
-
-    void OnCollisionStay()
-    {
-        isGrounded = 1;
-    }
-
-    void DecreaseCooldown()
-    {
-        if (dashCooldown > 0)
+        if (collision.gameObject.tag == "Platform")
         {
-            dashCooldown--;
+            isGrounded = 0;
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            isGrounded = 1;
         }
     }
 }
