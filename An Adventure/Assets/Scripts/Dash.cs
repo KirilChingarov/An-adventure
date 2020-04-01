@@ -24,20 +24,20 @@ public class Dash : Player
         
         if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown == 0)
         {
-            setDirection();
+            SetDirection();
         }
 
         if (dashTime <= 0 && dashed)
         {
-            removeVelocity();
+            RemoveVelocity();
         }
         else
         {
-            addVelocity();
+            AddVelocity();
         }
     }
     
-    void setDirection()
+    void SetDirection()
     {
         dashed = true;
         dashCooldown = 3;
@@ -57,7 +57,7 @@ public class Dash : Player
         }
     }
     
-    void addVelocity()
+    void AddVelocity()
     {
         dashTime -= Time.deltaTime;
         
@@ -75,12 +75,13 @@ public class Dash : Player
         }
     }
 
-    void removeVelocity()
+    void RemoveVelocity()
     {
         rb.velocity = Vector3.zero;
+        
         if (direction == 3)
         {
-            rb.velocity = Vector3.zero;
+            rb.AddForce(new Vector3(0.0f, 5.0f, 0.0f), ForceMode.Impulse);
         }
 
         direction = 0;

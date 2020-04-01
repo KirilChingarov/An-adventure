@@ -40,7 +40,8 @@ public class PlayerMovement : Player
             StartCoroutine(RotateMe(Vector3.up * 180, 0.05f));
             rotated = 1;
         }
-        if(Input.GetKey(KeyCode.D) && rotated > 0 && horizontalAxis > 0) {
+        if(Input.GetKey(KeyCode.D) && rotated > 0 && horizontalAxis > 0) 
+        {
             StartCoroutine(RotateMe(Vector3.up * -180, 0.05f));
             rotated = -1;
         }
