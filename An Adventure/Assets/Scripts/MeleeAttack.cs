@@ -8,12 +8,22 @@ public class MeleeAttack : MonoBehaviour
 
     bool inRange = false;
     GameObject enemy = null;
+    private Animator characterGFX;
+
+    public float attackCooldown = 2f;
+    private float nextAttack = 0f;
+
+    void Start()
+    {
+        characterGFX = GetComponent<Animator>();
+    }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && nextAttack <= Time.time)
         {
-            Slash(inRange, enemy);
+            characterGFX.SetTrigger("Slash");
+            nextAttack = Time.time + attackCooldown;
         }
     }
 
@@ -35,7 +45,7 @@ public class MeleeAttack : MonoBehaviour
         }
     }
 
-    void Slash(bool inRagne, GameObject enemy)
+    void Slash()
     {
         Debug.Log("Player is slashing.");
         if(inRange == true && enemy != null)
