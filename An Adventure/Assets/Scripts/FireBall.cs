@@ -7,6 +7,7 @@ public class FireBall : MonoBehaviour
     public Transform firePoint;
     public GameObject projectile;
     private Animator characterGFX;
+    public HealthBar cooldownBar;
 
     public float attackCooldown = 4f;
     private float nextAttack = 0f;
@@ -14,6 +15,7 @@ public class FireBall : MonoBehaviour
     void Start()
     {
         characterGFX = GetComponent<Animator>();
+        cooldownBar.setMaxHealth(attackCooldown);
     }
 
     void Update()
@@ -22,6 +24,11 @@ public class FireBall : MonoBehaviour
         {
             characterGFX.SetTrigger("Fireball");
             nextAttack = Time.time + attackCooldown;
+            cooldownBar.setHealth(0f);
+        }
+        if (nextAttack >= Time.time)
+        {
+            cooldownBar.setHealth(attackCooldown - (nextAttack - Time.time));
         }
     }
 

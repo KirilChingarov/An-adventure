@@ -9,13 +9,15 @@ public class MeleeAttack : MonoBehaviour
     bool inRange = false;
     GameObject enemy = null;
     private Animator characterGFX;
+    public HealthBar cooldownBar;
 
-    public float attackCooldown = 2f;
+    public float attackCooldown = 1f;
     private float nextAttack = 0f;
 
     void Start()
     {
         characterGFX = GetComponent<Animator>();
+        cooldownBar.setMaxHealth(attackCooldown);
     }
 
     void Update()
@@ -24,6 +26,11 @@ public class MeleeAttack : MonoBehaviour
         {
             characterGFX.SetTrigger("Slash");
             nextAttack = Time.time + attackCooldown;
+            cooldownBar.setHealth(0f);
+        }
+        if (nextAttack >= Time.time)
+        {
+            cooldownBar.setHealth(attackCooldown - (nextAttack - Time.time));
         }
     }
 
