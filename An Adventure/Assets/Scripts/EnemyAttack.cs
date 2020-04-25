@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public GameObject projectile;
     public int attackDamage = 10;
     public float attackCooldown = 1.0f;
 
@@ -12,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Character" && Time.time > nextAttack)
+        if (other.tag == "Player" && Time.time > nextAttack)
         {
             nextAttack = Time.time + attackCooldown;
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
