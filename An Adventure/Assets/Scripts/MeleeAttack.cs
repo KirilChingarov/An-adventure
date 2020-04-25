@@ -22,7 +22,7 @@ public class MeleeAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && nextAttack <= Time.time)
+        if (Input.GetKeyDown(KeyCode.E) && nextAttack <= Time.time)
         {
             characterGFX.SetTrigger("Slash");
             nextAttack = Time.time + attackCooldown;

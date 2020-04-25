@@ -20,7 +20,7 @@ public class FireBall : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire2") && nextAttack <= Time.time)
+        if (Input.GetKeyDown(KeyCode.Q) && nextAttack <= Time.time)
         {
             characterGFX.SetTrigger("Fireball");
             nextAttack = Time.time + attackCooldown;
