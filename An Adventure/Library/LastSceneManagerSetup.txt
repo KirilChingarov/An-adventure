@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CombatTestScene.unity
+- path: Assets/Scenes/UITestScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
