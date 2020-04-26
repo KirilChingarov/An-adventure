@@ -44,11 +44,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (rb.velocity.x >= 0.01f)
         {
-            enemyGFX.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            enemyGFX.transform.eulerAngles = new Vector3(0f, 90f, 0f);
         }
         if (rb.velocity.x <= -0.01f)
         {
-            enemyGFX.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            enemyGFX.transform.eulerAngles = new Vector3(0f, -90f, 0f);
         }
     }
 }
