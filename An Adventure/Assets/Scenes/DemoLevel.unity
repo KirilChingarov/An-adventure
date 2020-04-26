@@ -5010,6 +5010,8 @@ MonoBehaviour:
   firePoint: {fileID: 93742463}
   projectile: {fileID: 9025650974198382435, guid: 94dd21bcd1d629045837d7d4d2c78d3f,
     type: 3}
+  cooldownBar: {fileID: 0}
+  attackCooldown: 4
 --- !u!1 &181636123
 GameObject:
   m_ObjectHideFlags: 0
@@ -9924,6 +9926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 100
+  health: {fileID: 0}
 --- !u!114 &219851146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15082,6 +15085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 20
+  cooldownBar: {fileID: 0}
+  attackCooldown: 1
 --- !u!135 &588464060
 SphereCollider:
   m_ObjectHideFlags: 0
