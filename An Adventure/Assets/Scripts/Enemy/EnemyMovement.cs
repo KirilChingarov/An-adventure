@@ -6,28 +6,34 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed = 3f;
     public EnemyAggroRange aggroRange;
-    public EnemyAttack attackRange;
+    public EnemyAttackAnimator attackRange;
     public Transform target;
 
     private Rigidbody rb;
     public GameObject enemyGFX;
+    private Animator enemyAnimator;
+    private EnemyController enemy;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        enemyAnimator = enemyGFX.GetComponent<Animator>();
+        enemy = GetComponent<EnemyController>();
     }
 
     void Update()
     {
-        if (!aggroRange.isTargetInRange())
+        if (!aggroRange.isTargetInRange() || enemy.isEnemyDead())
         {
             rb.velocity = new Vector3(0f, rb.velocity.y, rb.velocity.z);
+            enemyAnimator.SetFloat("EnemySpeed", 0f);
             return;
         }
 
         float direction = getDirection();
 
         rb.velocity = new Vector3(direction * speed, rb.velocity.y, rb.velocity.z);
+        enemyAnimator.SetFloat("EnemySpeed", Mathf.Abs(direction));
 
         Flip();
     }
