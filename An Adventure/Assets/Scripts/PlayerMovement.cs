@@ -8,10 +8,11 @@ public class PlayerMovement : Player
     public float jumpForce = 2.0f;
     private int rotated = -1;
     public int isGrounded = 1;
+    public Animator animator;
     private bool rotating;
 
     void Start()
-    {
+    { 
         rb = GetComponent<Rigidbody>();
     }
 
@@ -26,6 +27,7 @@ public class PlayerMovement : Player
         horizontalAxis = Input.GetAxis("Horizontal");
         Vector3 displacement = new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * playerSpeed;
         rb.MovePosition(transform.position + displacement);
+        animator.SetFloat("PlayerSpeed", Mathf.Abs(horizontalAxis));
         Rotate();
     }
 
