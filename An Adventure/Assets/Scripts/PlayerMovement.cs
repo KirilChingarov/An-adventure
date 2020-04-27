@@ -10,6 +10,7 @@ public class PlayerMovement : Player
     public int isGrounded = 1;
     public Animator animator;
     private bool rotating;
+    private bool moving;
 
     void Start()
     { 
@@ -24,10 +25,13 @@ public class PlayerMovement : Player
             Jump();
         }
 
-        horizontalAxis = Input.GetAxis("Horizontal");
-        Vector3 displacement = new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * playerSpeed;
-        rb.MovePosition(transform.position + displacement);
-        animator.SetFloat("PlayerSpeed", Mathf.Abs(horizontalAxis));
+        if (!moving)
+        {
+            horizontalAxis = Input.GetAxis("Horizontal");
+            Vector3 displacement = new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * playerSpeed;
+            rb.MovePosition(transform.position + displacement);
+            animator.SetFloat("PlayerSpeed", Mathf.Abs(horizontalAxis));
+        }
         Rotate();
     }
 
@@ -78,6 +82,17 @@ public class PlayerMovement : Player
     public bool IsRotating()
     {
         return rotating;
+    }
+
+    public void FreezeMovement()
+    {
+        animator.SetFloat("PlayerSpeed", 0);
+        moving = true;
+    }
+
+    public void RenewMovement()
+    {
+        moving = false;
     }
 
     void OnCollisionStay(Collision collision)
