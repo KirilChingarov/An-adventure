@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public GameObject projectile;
     public int attackDamage = 10;
-    public float attackCooldown = 1.0f;
+    public float attackCooldown = 1.5f;
+    private bool playerInRange = false;
 
     float nextAttack;
 
+    public bool isPlayerInRange()
+    {
+        return playerInRange;
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Character" && Time.time > nextAttack)
+        if (other.tag == "Player" && Time.time > nextAttack)
         {
+            playerInRange = true;
             nextAttack = Time.time + attackCooldown;
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
 
@@ -21,6 +27,14 @@ public class EnemyAttack : MonoBehaviour
                 playerHealth.TakeDamage(attackDamage);
                 Debug.Log("Player Hit");
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerInRange = false;
         }
     }
 }
