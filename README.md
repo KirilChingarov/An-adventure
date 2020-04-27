@@ -3,6 +3,7 @@ Game developed by Kiril Chingarov and Simeon Tsekov
   
   An adventure is a 2.5D platformer. The world is a magical forest filled with adventures and many perils, hiding behind each corner. The player will be able to navigate this world, double jump, slash his way through the many enemies or even incinerate them with his fireballs. If the situation is desperate he can always escape with his dash. Explore the depths of the forest and survive!
   
+
 ## Requirements
   - Unity Hub
   - Unity Editor 2019.3.3f1(64-bit)
