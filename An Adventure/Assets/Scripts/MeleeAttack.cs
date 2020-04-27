@@ -9,21 +9,28 @@ public class MeleeAttack : MonoBehaviour
     bool inRange = false;
     GameObject enemy = null;
     private Animator characterGFX;
+    public HealthBar cooldownBar;
 
-    public float attackCooldown = 2f;
+    public float attackCooldown = 1f;
     private float nextAttack = 0f;
 
     void Start()
     {
         characterGFX = GetComponent<Animator>();
+        cooldownBar.setMaxHealth(attackCooldown);
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && nextAttack <= Time.time)
+        if (Input.GetKeyDown(KeyCode.E) && nextAttack <= Time.time)
         {
             characterGFX.SetTrigger("Slash");
             nextAttack = Time.time + attackCooldown;
+            cooldownBar.setHealth(0f);
+        }
+        if (nextAttack >= Time.time)
+        {
+            cooldownBar.setHealth(attackCooldown - (nextAttack - Time.time));
         }
     }
 
