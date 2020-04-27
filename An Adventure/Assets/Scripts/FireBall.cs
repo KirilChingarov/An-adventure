@@ -8,6 +8,7 @@ public class FireBall : MonoBehaviour
     public GameObject projectile;
     private Animator characterGFX;
     public HealthBar cooldownBar;
+    public GameObject player;
 
     public float attackCooldown = 4f;
     private float nextAttack = 0f;
@@ -20,7 +21,7 @@ public class FireBall : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && nextAttack <= Time.time)
+        if (Input.GetKeyDown(KeyCode.Q) && nextAttack <= Time.time && !player.GetComponent<PlayerMovement>().IsRotating())
         {
             characterGFX.SetTrigger("Fireball");
             nextAttack = Time.time + attackCooldown;
