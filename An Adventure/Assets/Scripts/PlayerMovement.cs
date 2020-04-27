@@ -7,7 +7,7 @@ public class PlayerMovement : Player
     public float playerSpeed = 0.1f;
     public float jumpForce = 2.0f;
     private int rotated = -1;
-    public int isGrounded = 1;
+    public int jumps = 2;
     public Animator animator;
     private bool rotating;
     private bool moving;
@@ -19,10 +19,15 @@ public class PlayerMovement : Player
 
     void Update()
     {
-        if (isGrounded > -1 && Input.GetKeyDown(KeyCode.Space))
+        if (jumps < 2 && Input.GetKeyDown(KeyCode.Space))
         {
-            isGrounded--;
+            if (jumps == 1)
+            {
+                animator.SetTrigger("doubleJump");
+            }
             Jump();
+            jumps++;
+            Debug.Log(jumps);
         }
 
         if (!moving)
@@ -75,7 +80,7 @@ public class PlayerMovement : Player
     {
         if (collision.gameObject.tag == "Platform")
         {
-            isGrounded = 0;
+            animator.SetTrigger("isAirborn");
         }
     }
 
@@ -95,12 +100,14 @@ public class PlayerMovement : Player
         moving = false;
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.CompareTag("Platform"))
         {
-            isGrounded = 1;
+            animator.SetTrigger("landed");
+            jumps = 0;
         }
     }
+
 }
 

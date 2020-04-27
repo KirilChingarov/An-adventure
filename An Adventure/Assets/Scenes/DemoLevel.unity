@@ -16035,7 +16035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   jumpForce: 5
-  isGrounded: 1
+  jumps: 0
   animator: {fileID: 784170934}
 --- !u!65 &557522415
 BoxCollider:
@@ -21907,7 +21907,6 @@ GameObject:
   m_Component:
   - component: {fileID: 784170930}
   - component: {fileID: 784170934}
-  - component: {fileID: 784170933}
   - component: {fileID: 784170931}
   - component: {fileID: 784170932}
   m_Layer: 0
@@ -21967,19 +21966,6 @@ MonoBehaviour:
   cooldownBar: {fileID: 0}
   player: {fileID: 557522412}
   attackCooldown: 4
---- !u!135 &784170933
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784170929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!95 &784170934
 Animator:
   serializedVersion: 3
@@ -34808,6 +34794,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8508328987944030262, guid: e93cab86fb84f4e42861a5d0c25cc849,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.003098
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508328987944030262, guid: e93cab86fb84f4e42861a5d0c25cc849,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.0015490055
+      objectReference: {fileID: 0}
     - target: {fileID: 8508328987944030264, guid: e93cab86fb84f4e42861a5d0c25cc849,
         type: 3}
       propertyPath: m_Name
@@ -45795,7 +45791,7 @@ Camera:
   m_GameObject: {fileID: 2289816941839609229}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
