@@ -5,20 +5,29 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int enemyHealth = 100;
+    public Animator enemyAnimator;
+    private bool isDead = false;
 
     public void TakeDamage(int damage)
     {
         enemyHealth -= damage;
+        enemyAnimator.SetTrigger("Hit");
 
         if (enemyHealth <= 0)
         {
-            Die();
+            enemyAnimator.SetTrigger("isDead");
+            isDead = true;
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log(name + " died");
         Destroy(gameObject);
+    }
+
+    public bool isEnemyDead()
+    {
+        return isDead;
     }
 }
