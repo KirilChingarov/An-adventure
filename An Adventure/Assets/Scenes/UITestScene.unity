@@ -4699,6 +4699,7 @@ MonoBehaviour:
   projectile: {fileID: 9025650974198382435, guid: 94dd21bcd1d629045837d7d4d2c78d3f,
     type: 3}
   cooldownBar: {fileID: 1741330520}
+  player: {fileID: 0}
   attackCooldown: 4
 --- !u!135 &1119487582
 SphereCollider:
@@ -6901,7 +6902,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   jumpForce: 5
-  isGrounded: 1
+  jumps: 2
+  animator: {fileID: 0}
 --- !u!65 &1651623087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9793,6 +9795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
+  enemyAnimator: {fileID: 0}
 --- !u!1 &6921516029380794485
 GameObject:
   m_ObjectHideFlags: 0
