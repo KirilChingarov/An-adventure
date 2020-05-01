@@ -6,17 +6,11 @@ public class GameEnding : MonoBehaviour
 {
     public Transform player;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if(player.position.x >= 65 || player.position.y <= -5)
         {
-            Debug.Log("Game Over!");
-            Application.Quit();
+            GameStateController.Instance.OnDie();
         }
     }
 }

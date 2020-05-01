@@ -5,34 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject controllsMenu;
+    public static MainMenu Instance { get; private set; }
 
-    public void Awake()
+    void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Time.timeScale = 1f;
-        Back();
     }
 
     public void Play()
     {
-        SceneManager.LoadScene("UITestScene");
+        GameStateController.Instance.OnLoadGame();
     }
 
     public void ControllsMenu()
     {
-        controllsMenu.SetActive(true);
-        mainMenu.SetActive(false);
+        GameStateController.Instance.OnControllsMenu();
     }
 
     public void Quit()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        GameStateController.Instance.OnQuitGame();
     }
 
     public void Back()
     {
-        controllsMenu.SetActive(false);
-        mainMenu.SetActive(true);
+        GameStateController.Instance.OnBack();
     }
 }
