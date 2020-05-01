@@ -15,6 +15,14 @@ public class PlayerMovement : Player
     void Start()
     { 
         rb = GetComponent<Rigidbody>();
+
+        if (GameStateController.Instance.loaded)
+        {
+            GameStateController.Instance.loaded = false;
+            gameObject.transform.position = new Vector3(GameStateController.Instance.playerPosition[0],
+                GameStateController.Instance.playerPosition[1],
+                GameStateController.Instance.playerPosition[2]);
+        }
     }
 
     void Update()

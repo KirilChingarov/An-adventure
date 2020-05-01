@@ -27,6 +27,11 @@ public class MainMenu : MonoBehaviour
         GameStateController.Instance.OnLoadGame();
     }
 
+    public void LoadGame()
+    {
+        GameStateController.Instance.OnLoad();
+    }
+
     public void ControllsMenu()
     {
         GameStateController.Instance.OnControllsMenu();
