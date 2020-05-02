@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        GameStateController.Instance.OnTakeDamage(damage);
+        GameStateController.Instance.health -= damage;
         health.setHealth(GameStateController.Instance.playerHealth);
 
         if (GameStateController.Instance.playerHealth <= 0)

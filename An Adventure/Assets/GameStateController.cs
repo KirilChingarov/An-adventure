@@ -29,11 +29,6 @@ public class GameStateController : MonoBehaviour
         }
     }
 
-    public void OnTakeDamage(int damage)
-    {
-        playerHealth -= damage;
-    }
-
     public void OnDie()
     {
         OnLoadMenu();
