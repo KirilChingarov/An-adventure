@@ -25,9 +25,16 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        Debug.Log("clicked");
         isPaused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    public void Save()
+    {
+        GameStateController.Instance.OnSave();
+        Resume();
     }
 
     public void Pause()
@@ -39,11 +46,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        GameStateController.Instance.OnQuitGame();
     }
 
     public void QuitToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        GameStateController.Instance.OnLoadMenu();
     }
 }

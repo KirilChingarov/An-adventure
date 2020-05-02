@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int playerHealth = 100;
     public HealthBar health;
-
-    private void Start()
-    {
-        health.setMaxHealth(playerHealth);
-    }
 
     public void TakeDamage(int damage)
     {
-        playerHealth -= damage;
-        health.setHealth(playerHealth);
+        GameStateController.Instance.health -= damage;
+        health.setHealth(GameStateController.Instance.playerHealth);
 
-        if(playerHealth <= 0)
+        if (GameStateController.Instance.playerHealth <= 0)
         {
             Die();
         }
@@ -25,8 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player died!!!");
+        GameStateController.Instance.OnDie();
         Destroy(gameObject);
-        UnityEditor.EditorApplication.isPlaying = false;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dash : Player
 {
-    public int dashCooldown = 3;
+    public float dashCooldown = 3;
     public float dashSpeed = 2.0f;
     public float startDashTime;
     private int direction;
@@ -14,7 +14,7 @@ public class Dash : Player
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        InvokeRepeating("DecreaseCooldown", 1.0f, 1.0f);
+        InvokeRepeating("DecreaseCooldown", 1.0f, 0.01f);
         dashTime = startDashTime;
     }
 
@@ -22,7 +22,7 @@ public class Dash : Player
     {
         horizontalAxis = Input.GetAxis("Horizontal");
         
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown == 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= 0)
         {
             SetDirection();
         }
@@ -92,7 +92,7 @@ public class Dash : Player
     {
         if (dashCooldown > 0)
         {
-            dashCooldown--;
+            dashCooldown-=0.01f;
         }
     }
 }
