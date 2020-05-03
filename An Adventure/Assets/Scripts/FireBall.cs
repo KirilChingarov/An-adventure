@@ -15,6 +15,7 @@ public class FireBall : MonoBehaviour
 
     void Start()
     {
+
         characterGFX = GetComponent<Animator>();
         cooldownBar.setMaxHealth(attackCooldown);
     }
@@ -36,5 +37,15 @@ public class FireBall : MonoBehaviour
     void Shoot()
     {
         Instantiate(projectile, firePoint.position, firePoint.rotation);
+    }
+
+    void freezePosition()
+    {
+        player.GetComponent<PlayerMovement>().FreezeMovement();
+    }
+
+    void unfreezePosition()
+    {
+        player.GetComponent<PlayerMovement>().RenewMovement();
     }
 }
