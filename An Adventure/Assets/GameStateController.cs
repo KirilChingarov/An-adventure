@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameStateController : MonoBehaviour
 {
     public string MainMenu = "MainMenu";
-    public string DemoLevel = "DemoLevel";
+    public string DemoLevel = "Leve_Mountain_1";
     public GameObject mainMenu;
     public GameObject controllsMenu;
     public GameObject player;
@@ -37,7 +37,7 @@ public class GameStateController : MonoBehaviour
     public void OnLoadGame()
     {
         mainMenu.SetActive(false);
-        SceneManager.LoadScene("DemoLevel");
+        SceneManager.LoadScene("Leve_Mountain_1");
     }
 
     public void OnLoadMenu()

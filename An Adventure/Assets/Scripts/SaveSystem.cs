@@ -7,6 +7,7 @@ public static class SaveSystem
 
     public static void SavePlayer(GameStateController controller)
     {
+        Debug.Log("saved");
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Path.Combine(Application.persistentDataPath, "player.bin");
 
@@ -33,6 +34,15 @@ public static class SaveSystem
         else
         {
             return null;
+        }
+    }
+
+    public static void RazeData()
+    {
+        string playerPath = Path.Combine(Application.persistentDataPath, "player.bin");
+        if (File.Exists(playerPath))
+        {
+            File.Delete(playerPath);
         }
     }
 }

@@ -2087,17 +2087,17 @@ PrefabInstance:
     - target: {fileID: 2222111361405018444, guid: 88f2fd29f58b9734683512546acec310,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72.63
+      value: 71.03
       objectReference: {fileID: 0}
     - target: {fileID: 2222111361405018444, guid: 88f2fd29f58b9734683512546acec310,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.56
+      value: 6.34
       objectReference: {fileID: 0}
     - target: {fileID: 2222111361405018444, guid: 88f2fd29f58b9734683512546acec310,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.85
+      value: 3.32
       objectReference: {fileID: 0}
     - target: {fileID: 2222111361405018444, guid: 88f2fd29f58b9734683512546acec310,
         type: 3}
@@ -5608,6 +5608,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9194776308067619424, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194776308067619424, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194776308067619424, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194776308067619424, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1271645836}
+    - target: {fileID: 9194776308067619424, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194776308067619424, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9194776308219889602, guid: 2ac5e68184886dd4d9b12ad3af74a498,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5775,6 +5805,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ac5e68184886dd4d9b12ad3af74a498, type: 3}
+--- !u!114 &1271645836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9194776309048239271, guid: 2ac5e68184886dd4d9b12ad3af74a498,
+    type: 3}
+  m_PrefabInstance: {fileID: 1271645835}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023d86487b8658546ae7701aef04f218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1274758668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7342,6 +7384,7 @@ GameObject:
   - component: {fileID: 1485464208}
   - component: {fileID: 1485464207}
   - component: {fileID: 1485464206}
+  - component: {fileID: 1485464213}
   m_Layer: 9
   m_Name: Character
   m_TagString: Player
@@ -7453,6 +7496,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1485464213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485464205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1b0d83a7b160a4bac531503c1968bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1485655727 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9194776309310635100, guid: 2ac5e68184886dd4d9b12ad3af74a498,
